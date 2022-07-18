@@ -1,2 +1,2 @@
-# my_calculator
+# My Calculator
 My Calculator Application (Python)
