@@ -14,7 +14,7 @@ class App:
 
     def create_widgets(self):
         '''Create Widgets'''
-        btn_wh = {"width":3, "height":1}
+        BTN_WH = {"width":3, "height":1}
 
         # Frame
         self.frame = tk.Frame(self.rt_window)
@@ -23,40 +23,40 @@ class App:
         self.entry = tk.Entry(self.frame)
 
         # Row 1
-        self.btn_percent = tk.Button(self.frame, text='％', **btn_wh)
-        self.btn_temp = tk.Button(self.frame, text=' ', **btn_wh)
-        self.btn_clear = tk.Button(self.frame, text='C', **btn_wh)
-        self.btn_back = tk.Button(self.frame, text='←', **btn_wh)
+        self.btn_percent = tk.Button(self.frame, text='％', **BTN_WH)
+        self.btn_temp = tk.Button(self.frame, text=' ', **BTN_WH)
+        self.btn_clear = tk.Button(self.frame, text='C', **BTN_WH)
+        self.btn_back = tk.Button(self.frame, text='←', **BTN_WH)
         
         # Row 2
-        self.btn_temp2 = tk.Button(self.frame, text=' ', **btn_wh)
-        self.btn_temp3 = tk.Button(self.frame, text=' ', **btn_wh)
-        self.btn_temp4 = tk.Button(self.frame, text=' ', **btn_wh)
-        self.btn_divide = tk.Button(self.frame, text='÷', **btn_wh)
+        self.btn_temp2 = tk.Button(self.frame, text=' ', **BTN_WH)
+        self.btn_temp3 = tk.Button(self.frame, text=' ', **BTN_WH)
+        self.btn_temp4 = tk.Button(self.frame, text=' ', **BTN_WH)
+        self.btn_divide = tk.Button(self.frame, text='÷', **BTN_WH)
 
         # Row 3
-        self.btn_num7 = tk.Button(self.frame, text='7', **btn_wh)
-        self.btn_num8 = tk.Button(self.frame, text='8', **btn_wh)
-        self.btn_num9 = tk.Button(self.frame, text='9', **btn_wh)
-        self.btn_time = tk.Button(self.frame, text='×', **btn_wh)
+        self.btn_num7 = tk.Button(self.frame, command=callback_num7, text='7', **BTN_WH)
+        self.btn_num8 = tk.Button(self.frame, command=callback_num8, text='8', **BTN_WH)
+        self.btn_num9 = tk.Button(self.frame, command=callback_num9, text='9', **BTN_WH)
+        self.btn_time = tk.Button(self.frame, text='×', **BTN_WH)
 
         # Row 4
-        self.btn_num4 = tk.Button(self.frame, text='4', **btn_wh)
-        self.btn_num5 = tk.Button(self.frame, text='5', **btn_wh)
-        self.btn_num6 = tk.Button(self.frame, text='6', **btn_wh)
-        self.btn_minus = tk.Button(self.frame, text='－', **btn_wh)
+        self.btn_num4 = tk.Button(self.frame, command=callback_num4, text='4', **BTN_WH)
+        self.btn_num5 = tk.Button(self.frame, command=callback_num5, text='5', **BTN_WH)
+        self.btn_num6 = tk.Button(self.frame, command=callback_num6, text='6', **BTN_WH)
+        self.btn_minus = tk.Button(self.frame, text='－', **BTN_WH)
 
         # Row 5
-        self.btn_num1 = tk.Button(self.frame, text='1', **btn_wh)
-        self.btn_num2 = tk.Button(self.frame, text='2', **btn_wh)
-        self.btn_num3 = tk.Button(self.frame, text='3', **btn_wh)
-        self.btn_plus = tk.Button(self.frame, text='＋', **btn_wh)
+        self.btn_num1 = tk.Button(self.frame, command=callback_num1, text='1', **BTN_WH)
+        self.btn_num2 = tk.Button(self.frame, command=callback_num2, text='2', **BTN_WH)
+        self.btn_num3 = tk.Button(self.frame, command=callback_num3, text='3', **BTN_WH)
+        self.btn_plus = tk.Button(self.frame, text='＋', **BTN_WH)
 
         # Row 6
-        self.btn_temp5 = tk.Button(self.frame, text=' ', **btn_wh)
-        self.btn_num0 = tk.Button(self.frame, text='0', **btn_wh)
-        self.btn_point = tk.Button(self.frame, text='.', **btn_wh)
-        self.btn_calc = tk.Button(self.frame, text='＝', **btn_wh)
+        self.btn_temp5 = tk.Button(self.frame, text=' ', **BTN_WH)
+        self.btn_num0 = tk.Button(self.frame, command=callback_num0, text='0', **BTN_WH)
+        self.btn_point = tk.Button(self.frame, text='.', **BTN_WH)
+        self.btn_calc = tk.Button(self.frame, text='＝', **BTN_WH)
 
     def place_widgets(self):
         '''Place Widgets'''
