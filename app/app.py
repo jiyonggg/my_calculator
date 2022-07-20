@@ -4,6 +4,7 @@ from app.handler import *
 
 class App:
     def __init__(self):
+        '''Class Initializer'''
         self.rt_window = tk.Tk()
         self.rt_window.title("My Calculator")
 
@@ -26,7 +27,7 @@ class App:
         self.btn_percent = tk.Button(self.frame, text='％', **BTN_WH)
         self.btn_temp = tk.Button(self.frame, text=' ', **BTN_WH)
         self.btn_clear = tk.Button(self.frame, text='C', **BTN_WH)
-        self.btn_back = tk.Button(self.frame, command=lambda: callback_back(self.entry), text='←', **BTN_WH)
+        self.btn_back = tk.Button(self.frame, text='←', **BTN_WH)
         
         # Row 2
         self.btn_temp2 = tk.Button(self.frame, text=' ', **BTN_WH)
@@ -35,29 +36,50 @@ class App:
         self.btn_divide = tk.Button(self.frame, text='÷', **BTN_WH)
 
         # Row 3
-        self.btn_num7 = tk.Button(self.frame, command=lambda: callback_number('7', self.entry), text='7', **BTN_WH)
-        self.btn_num8 = tk.Button(self.frame, command=lambda: callback_number('8', self.entry), text='8', **BTN_WH)
-        self.btn_num9 = tk.Button(self.frame, command=lambda: callback_number('9', self.entry), text='9', **BTN_WH)
+        self.btn_num7 = tk.Button(self.frame, text='7', **BTN_WH)
+        self.btn_num8 = tk.Button(self.frame, text='8', **BTN_WH)
+        self.btn_num9 = tk.Button(self.frame, text='9', **BTN_WH)
         self.btn_time = tk.Button(self.frame, text='×', **BTN_WH)
 
         # Row 4
-        self.btn_num4 = tk.Button(self.frame, command=lambda: callback_number('4', self.entry), text='4', **BTN_WH)
-        self.btn_num5 = tk.Button(self.frame, command=lambda: callback_number('5', self.entry), text='5', **BTN_WH)
-        self.btn_num6 = tk.Button(self.frame, command=lambda: callback_number('6', self.entry), text='6', **BTN_WH)
+        self.btn_num4 = tk.Button(self.frame, text='4', **BTN_WH)
+        self.btn_num5 = tk.Button(self.frame, text='5', **BTN_WH)
+        self.btn_num6 = tk.Button(self.frame, text='6', **BTN_WH)
         self.btn_minus = tk.Button(self.frame, text='－', **BTN_WH)
-        self.btn_minus
 
         # Row 5
-        self.btn_num1 = tk.Button(self.frame, command=lambda: callback_number('1', self.entry), text='1', **BTN_WH)
-        self.btn_num2 = tk.Button(self.frame, command=lambda: callback_number('2', self.entry), text='2', **BTN_WH)
-        self.btn_num3 = tk.Button(self.frame, command=lambda: callback_number('3', self.entry), text='3', **BTN_WH)
+        self.btn_num1 = tk.Button(self.frame, text='1', **BTN_WH)
+        self.btn_num2 = tk.Button(self.frame, text='2', **BTN_WH)
+        self.btn_num3 = tk.Button(self.frame, text='3', **BTN_WH)
         self.btn_plus = tk.Button(self.frame, text='＋', **BTN_WH)
 
         # Row 6
         self.btn_temp5 = tk.Button(self.frame, text=' ', **BTN_WH)
-        self.btn_num0 = tk.Button(self.frame, command=lambda: callback_number('0', self.entry), text='0', **BTN_WH)
+        self.btn_num0 = tk.Button(self.frame, text='0', **BTN_WH)
         self.btn_point = tk.Button(self.frame, text='.', **BTN_WH)
         self.btn_calc = tk.Button(self.frame, text='＝', **BTN_WH)
+
+        '''
+        print(self.btn_num0)
+        print(self.btn_num1)
+        print(self.btn_num2)
+        print(self.btn_num3)
+        print(self.btn_num4)
+        print(self.btn_num5)
+        print(self.btn_num6)
+        print(self.btn_num7)
+        print(self.btn_num8)
+        print(self.btn_num9)
+
+        print("---------------------")
+        '''
+
+        num_button_list = [getattr(self, f"btn_num{i}") for i in range(0, 10)] # 0~9 Number Button List
+
+        # 문제 지점
+        for num_button in num_button_list:
+            print(num_button)
+            num_button.configure(command=lambda: callback_number(num_button['text'], self.entry))
 
     def place_widgets(self):
         '''Place Widgets'''

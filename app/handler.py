@@ -4,6 +4,7 @@ import tkinter.messagebox as msgbox
 
 def callback_number(number_text, entry_instance: tk.Entry):
     '''Number Button Callback'''
+    print(number_text, entry_instance)
     entry_instance.insert(tk.END, number_text)
 
 def callback_back(entry_instance: tk.Entry):
