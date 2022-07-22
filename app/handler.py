@@ -4,7 +4,6 @@ import tkinter.messagebox as msgbox
 
 def callback_number(number_text, entry_instance: tk.Entry):
     '''Number Button Callback'''
-    print(number_text, entry_instance)
     entry_instance.insert(tk.END, number_text)
 
 def callback_back(entry_instance: tk.Entry):
@@ -12,3 +11,23 @@ def callback_back(entry_instance: tk.Entry):
     result = entry_instance.get()
     entry_instance.delete(0, tk.END)
     entry_instance.insert(0, result[0:-1])
+
+def callback_clear(entry_instance: tk.Entry):
+    '''Clear Button Callback'''
+
+def callback_clearexp(entry_instance: tk.Entry):
+    '''Clear Expression Button Callback'''
+    entry_instance.delete(0, tk.END)
+
+def callback_operator(operator_text: tk.Button, entry_instance: tk.Entry):
+    '''Operator Button Callback'''
+
+def callback_point(entry_instance: tk.Entry):
+    if '.' not in entry_instance.get():
+        entry_instance.insert(tk.END, '.')
+
+def callback_calc(entry_instance: tk.Entry):
+    try:
+        msgbox.showinfo("Result", str(eval(entry_instance.get())))
+    except:
+        pass
