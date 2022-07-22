@@ -76,10 +76,10 @@ class App:
 
         num_button_list = [getattr(self, f"btn_num{i}") for i in range(0, 10)] # 0~9 Number Button List
 
-        # 문제 지점
+        # Resolution: 'Capture Lambda'
         for num_button in num_button_list:
             print(num_button)
-            num_button.configure(command=lambda: callback_number(num_button['text'], self.entry))
+            num_button.configure(command=lambda num_button=num_button: callback_number(num_button['text'], self.entry))
 
     def place_widgets(self):
         '''Place Widgets'''
