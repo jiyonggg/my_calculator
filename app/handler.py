@@ -2,6 +2,7 @@
 import tkinter as tk
 import tkinter.messagebox as msgbox
 
+# Button Callbacks
 def callback_number(number_text, entry_instance: tk.Entry):
     '''Number Button Callback'''
     entry_instance.insert(tk.END, number_text)
@@ -31,3 +32,7 @@ def callback_calc(entry_instance: tk.Entry):
         msgbox.showinfo("Result", str(eval(entry_instance.get())))
     except:
         pass
+
+# Keyboard Event Handlers
+def handler_return(event: tk.Event, entry_instance: tk.Entry):
+    callback_calc(entry_instance)

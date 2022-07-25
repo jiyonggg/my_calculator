@@ -65,6 +65,10 @@ class App:
 
     def command_widgets(self):
         '''Configure The Command of Widgets'''
+        self.rt_window.focus_set()
+        
+        self.rt_window.bind("<Return>", lambda event: handler_return(event, self.entry))
+        
         num_button_list = [getattr(self, f"btn_num{i}") for i in range(0, 10)]
         operator_button_list = [getattr(self, f"btn_{i}") for i in ('plus', 'minus', 'time', 'divide')]
 
