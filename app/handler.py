@@ -15,24 +15,50 @@ def callback_back(entry_instance: tk.Entry):
 
 def callback_clear(entry_instance: tk.Entry):
     '''Clear Button Callback'''
+    entry_instance.delete(0, tk.END)
 
 def callback_clearexp(entry_instance: tk.Entry):
     '''Clear Expression Button Callback'''
     entry_instance.delete(0, tk.END)
 
-def callback_operator(operator_text: tk.Button, entry_instance: tk.Entry):
+def callback_operator(operator_text: str, entry_instance: tk.Entry):
     '''Operator Button Callback'''
+    callback_calc(entry_instance)
+
+    entry_instance.insert(tk.END, ' ' + operator_text + ' ')
 
 def callback_point(entry_instance: tk.Entry):
+    '''Point Button Callback'''
     if '.' not in entry_instance.get():
         entry_instance.insert(tk.END, '.')
 
 def callback_calc(entry_instance: tk.Entry):
+    '''Calculate Button Callback'''
+    operator_dict = {'＋': '+', '－': '-', '×': '*', '÷': '/'}
+    calc_exp = entry_instance.get()
+    result = ''
+
     try:
-        msgbox.showinfo("Result", str(eval(entry_instance.get())))
-    except:
-        pass
+        for char in operator_dict:
+            calc_exp = calc_exp.replace(char, operator_dict[char])
+
+        result = eval(calc_exp)
+    finally:
+        entry_instance.delete(0, tk.END)
+        entry_instance.insert(0, str(result))
+
+def callback_transform(transform_text: str, entry_instance: tk.Entry):
+    '''％, 1/χ, χ², √χ, ＋/－ Button Callback'''
+    transform_dict = {'％': '/100', '1/χ': '**-1', 'χ²': '**2', '√χ': '**(1/2)', '＋/－': '*-1'}
+    entry_instance.insert(tk.END, transform_dict[transform_text])
+
+    callback_calc(entry_instance)
 
 # Keyboard Event Handlers
 def handler_return(event: tk.Event, entry_instance: tk.Entry):
+    '''Return Key Handler'''
     callback_calc(entry_instance)
+
+def handler_back(event: tk.Event, entry_instance: tk.Entry):
+    '''BackSpace Key Handler'''
+    callback_clear(entry_instance)

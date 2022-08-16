@@ -1,12 +1,17 @@
 '''Tkinter Application'''
+import ctypes
 import tkinter as tk
 from app.handler import *
 
 class App:
     def __init__(self):
         '''Class Initializer'''
+        myappid = 'mycompany.myproduct.subproduct.version' # arbitrary string
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
         self.rt_window = tk.Tk()
         self.rt_window.title("My Calculator")
+        self.rt_window.iconbitmap("icon.ico")
 
         self.create_widgets()
         self.command_widgets()
@@ -66,18 +71,24 @@ class App:
     def command_widgets(self):
         '''Configure The Command of Widgets'''
         self.rt_window.focus_set()
-        
+
+        # Keyboard Events
         self.rt_window.bind("<Return>", lambda event: handler_return(event, self.entry))
-        
+        self.rt_window.bind("<BackSpace>", lambda event: handler_back(event, self.entry))
+
+        # Button Events
         num_button_list = [getattr(self, f"btn_num{i}") for i in range(0, 10)]
         operator_button_list = [getattr(self, f"btn_{i}") for i in ('plus', 'minus', 'time', 'divide')]
+        transform_button_list = [getattr(self, f"btn_{i}") for i in ('percent', 'fraction', 'square', 'squareroot', 'negate')]
 
-        # Solution: 'Capture Lambda'
         for num_button in num_button_list:
             num_button.configure(command=lambda num_button=num_button: callback_number(num_button['text'], self.entry))
 
         for operator_button in operator_button_list:
             operator_button.configure(command=lambda operator_button=operator_button: callback_operator(operator_button['text'], self.entry))
+
+        for transform_button in transform_button_list:
+            transform_button.configure(command=lambda transform_button=transform_button: callback_transform(transform_button['text'], self.entry))
 
         self.btn_back.configure(command=lambda: callback_back(self.entry))
         self.btn_clear.configure(command=lambda: callback_clear(self.entry))
@@ -89,7 +100,7 @@ class App:
         '''Place Widgets'''
         # Row 0
         self.label.grid(row=0, column=0, columnspan=4)
-        
+
         # Row 1
         self.entry.grid(row=1, column=0, columnspan=4)
 
@@ -98,7 +109,7 @@ class App:
         self.btn_clearexp.grid(row=2, column=1)
         self.btn_clear.grid(row=2, column=2)
         self.btn_back.grid(row=2, column=3)
-        
+
         # Row 3
         self.btn_fraction.grid(row=3, column=0)
         self.btn_square.grid(row=3, column=1)
@@ -131,7 +142,3 @@ class App:
 
         # Frame
         self.frame.pack()
-
-def main():
-    '''Run'''
-    App()
